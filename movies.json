@@ -1,0 +1,9 @@
+{
+    "movies":[
+        { "title" : "Amarte Duele", "gender": "Amor mexicano", "duration": 120 },
+        { "title" : "Spiderman", "gender": "Comedia", "duration": 30 },
+        { "title" : "La Esfera", "gender": "Cool", "duration": 300 },
+        { "title" : "Kusturica", "gender": "Cine negro", "duration": 80 },
+        { "title" : "Segunda Guerra Mundial", "gender": "Guerra", "duration": 1504 }
+    ]
+}

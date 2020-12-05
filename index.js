@@ -1,17 +1,42 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+//Importar una librería para .env
+const express = require('express')
+require('dotenv').config() //Va al proyecto y va al .env
+const movieJson = require('./movies.json')
+// console.log('Contraseña de Spotify', process.env.SPOTIFY_PASSWORD)
+const app = express()
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+app.use(express.json)
+//END POINT
+//Va ha haber variable del slash
+app.get('/movies', (req, res){
+    const searchValue = req.query.title
+    const movies = moviesJson
+    movies.movies.filter(movie => movie.title.toLowerCase().includes(searchValue.toLocaleLowerCase()))
+})
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+app.get('/:name', (req, res) => {
+    console.log(req.query)
+    const name = req.params.name
+    res.json({message: `Hola ${name} desde express`})
+    //res.send('Hola mundo desde el endpoint')
+}) 
+
+
+//No espera variable
+app.get('/', (req, res) =>{
+    const name = req.query.name || 'mundo' //Setear mundo
+    //console.log(req.query)
+    res.json({message: `Hola ${name} desde Express`})
+    //res.send('Hola mundo desde el endpoint')
+}) //requeste y response
+
+const portito = process.env.PORT || 3001
+
+app.post('/', (req, res) => {
+    const body = req.body
+    res.json(body)
+})
+
+app.listen(portito, () => {
+    console.log(`Express App running port ${portito}`)
+})
